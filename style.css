@@ -1,0 +1,650 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #05020a;
+  color: #fff;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.flex-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.screen {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+/* ==========================================
+   FONDO ANIMADO: CIELO, LUNA, NUBES Y NIEBLA
+   ========================================== */
+.sky-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 25%, #1d0731 0%, #05020a 85%);
+  z-index: -5;
+}
+
+/* LUNA ANIMADA CON MOVIMIENTO NOTABLE */
+.spooky-moon {
+  position: fixed;
+  top: 35px;
+  left: 50%;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fffdf0 0%, #e6ca65 45%, #8c6813 85%, #302202 100%);
+  z-index: -4;
+  animation: moonMotion 3.5s ease-in-out infinite alternate;
+}
+
+.spooky-moon::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 35px;
+  width: 30px;
+  height: 30px;
+  background: rgba(80, 55, 10, 0.22);
+  border-radius: 50%;
+  box-shadow: 35px 45px 0 3px rgba(80, 55, 10, 0.2), -5px 55px 0 1px rgba(80, 55, 10, 0.15);
+}
+
+@keyframes moonMotion {
+  0% {
+    transform: translateX(-50%) translateY(0px) rotate(-3deg);
+    box-shadow: 0 0 30px rgba(255, 180, 50, 0.5), 0 0 60px rgba(168, 85, 247, 0.4);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-25px) rotate(5deg);
+    box-shadow: 0 0 70px rgba(255, 117, 24, 0.9), 0 0 110px rgba(168, 85, 247, 0.7);
+  }
+}
+
+/* ==========================================
+   NUBES DENSAS Y ALTAMENTE VISIBLES
+   ========================================== */
+.cloud-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -3;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.cloud {
+  position: absolute;
+  background: rgba(88, 28, 135, 0.75); /* Morado denso mucho más visible */
+  border-radius: 100px;
+  box-shadow: 0 0 25px rgba(168, 85, 247, 0.4);
+  filter: blur(4px); /* Menos blur para que no se desvanezcan */
+  animation: moveCloudsRight linear infinite;
+}
+
+.cloud::before, .cloud::after {
+  content: '';
+  position: absolute;
+  background: inherit;
+  border-radius: 50%;
+}
+
+/* Nube 1: Grande y bien marcada cerca de la luna */
+.cloud-1 {
+  top: 45px;
+  width: 220px;
+  height: 65px;
+  animation-duration: 18s;
+  opacity: 0.9;
+}
+.cloud-1::before { width: 95px; height: 95px; top: -45px; left: 35px; }
+.cloud-1::after { width: 75px; height: 75px; top: -30px; right: 35px; }
+
+/* Nube 2: Muy densa y rápida a media altura */
+.cloud-2 {
+  top: 130px;
+  width: 280px;
+  height: 75px;
+  animation-duration: 13s;
+  animation-delay: -6s;
+  opacity: 0.85;
+}
+.cloud-2::before { width: 110px; height: 110px; top: -50px; left: 50px; }
+.cloud-2::after { width: 85px; height: 85px; top: -35px; right: 40px; }
+
+/* Nube 3: Nube gigante de fondo */
+.cloud-3 {
+  top: 15px;
+  width: 360px;
+  height: 85px;
+  animation-duration: 26s;
+  animation-delay: -12s;
+  opacity: 0.7;
+}
+.cloud-3::before { width: 130px; height: 130px; top: -60px; left: 60px; }
+.cloud-3::after { width: 100px; height: 100px; top: -40px; right: 50px; }
+
+@keyframes moveCloudsRight {
+  0% { transform: translateX(-400px); }
+  100% { transform: translateX(105vw); }
+}
+
+/* ==========================================
+   NIEBLA INFERIOR DENSA Y RESALTADA
+   ========================================== */
+.fog-layer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 38vh;
+  background: linear-gradient(
+    to top, 
+    rgba(60, 15, 95, 0.95) 0%, 
+    rgba(147, 51, 234, 0.6) 40%, 
+    rgba(255, 117, 24, 0.25) 75%, 
+    transparent 100%
+  );
+  filter: blur(15px);
+  z-index: -2;
+  pointer-events: none;
+  animation: fogDrift 10s ease-in-out infinite alternate;
+}
+
+.fog-layer::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 100%, rgba(255, 117, 24, 0.4), transparent 70%);
+  animation: fogDrift2 7s ease-in-out infinite alternate;
+}
+
+@keyframes fogDrift {
+  0% { transform: translateX(0) scaleY(1); opacity: 0.85; }
+  100% { transform: translateX(-25%) scaleY(1.25); opacity: 1; }
+}
+
+@keyframes fogDrift2 {
+  0% { transform: translateX(-15%); opacity: 0.5; }
+  100% { transform: translateX(15%); opacity: 0.9; }
+}
+
+/* ==========================================
+   PORTADA Y CARGA
+   ========================================== */
+.loader-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 90%;
+  max-width: 500px;
+  z-index: 2;
+  padding: 20px;
+}
+
+.welcome-title {
+  font-family: 'Cinzel Decorative', serif;
+  color: #ff7518;
+  font-size: clamp(1.8rem, 6vw, 2.6rem);
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-shadow: 3px 3px 0px #000, 0 0 20px rgba(255, 117, 24, 0.8);
+  margin-bottom: 2px;
+}
+
+.welcome-subtitle-highlight {
+  font-family: 'Pirata One', cursive;
+  color: #ffea00;
+  font-size: clamp(1.6rem, 5.5vw, 2.2rem);
+  letter-spacing: 1.5px;
+  text-shadow: 2px 2px 0px #000, 0 0 15px rgba(255, 234, 0, 0.7);
+  margin-bottom: 20px;
+}
+
+.avatar-wrapper {
+  margin-bottom: 25px;
+}
+
+.avatar-portada {
+  width: clamp(170px, 45vw, 240px);
+  height: clamp(170px, 45vw, 240px);
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #ff7518;
+  box-shadow: 0 0 35px rgba(255, 117, 24, 0.7), 0 0 70px rgba(168, 85, 247, 0.3);
+}
+
+.pumpkin-spinner {
+  font-size: 2.8rem;
+  animation: spin 2s infinite linear;
+  margin-bottom: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  color: #ff7518;
+  margin: 10px 0 20px 0;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(255, 117, 24, 0.4);
+}
+
+.btn-go {
+  font-family: 'Pirata One', cursive;
+  background: linear-gradient(135deg, #ff7518, #e50914);
+  color: white;
+  border: 2px solid #ffae00;
+  padding: 12px 40px;
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 0 25px rgba(255, 117, 24, 0.8);
+  text-shadow: 2px 2px 0px #000;
+}
+
+/* ==========================================
+   SUSTO Y REVELACIÓN FINAL
+   ========================================== */
+#screen-jumpscare {
+  background-color: #000;
+  z-index: 200;
+  position: relative;
+  overflow: hidden;
+  padding: 15px;
+}
+
+.jumpscare-content {
+  width: 100%;
+  max-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.glitch-bg {
+  animation: bgFlash 0.1s infinite;
+}
+
+@keyframes bgFlash {
+  0% { background-color: #000; }
+  50% { background-color: #300; }
+  100% { background-color: #000; }
+}
+
+.jumpscare-content img {
+  max-width: 85vw;
+  max-height: 45vh;
+  border-radius: 15px;
+  border: 3px solid #ff0000;
+  box-shadow: 0 0 40px #ff0000;
+  animation: superShake 0.08s infinite;
+}
+
+@keyframes superShake {
+  0% { transform: translate(5px, 5px) rotate(0deg) scale(1.02); }
+  25% { transform: translate(-8px, -5px) rotate(-3deg) scale(0.98); }
+  50% { transform: translate(-5px, 8px) rotate(3deg) scale(1.05); }
+  75% { transform: translate(8px, -2px) rotate(-1deg) scale(0.95); }
+  100% { transform: translate(2px, -8px) rotate(2deg) scale(1.02); }
+}
+
+.hacked-text {
+  color: #ff0000;
+  font-size: clamp(1.4rem, 6vw, 2.8rem);
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 900;
+  text-align: center;
+  margin-top: 15px;
+  padding: 0 10px;
+  word-wrap: break-word;
+  text-shadow: 0 0 15px #ff0000;
+  animation: pulseText 0.1s infinite;
+}
+
+/* REVELACIÓN MÁS GRANDE Y RESALTADA */
+.final-reveal-text {
+  color: #ffea00 !important;
+  font-size: clamp(1.8rem, 7vw, 3rem) !important;
+  font-family: 'Pirata One', cursive !important;
+  text-align: center !important;
+  line-height: 1.2 !important;
+  padding: 0 15px !important;
+  width: 100% !important;
+  text-shadow: 3px 3px 0px #000, 0 0 20px #ff0000, 0 0 40px #ff7518 !important;
+  animation: pulseGlow 0.2s infinite alternate !important;
+}
+
+@keyframes pulseGlow {
+  0% { transform: scale(0.99); }
+  100% { transform: scale(1.02); }
+}
+
+.meme-popup {
+  position: fixed;
+  z-index: 250;
+  width: 180px;
+  height: 180px;
+  max-width: 50vw;
+  max-height: 30vh;
+  object-fit: cover;
+  border: 3px solid #ff0000;
+  border-radius: 12px;
+  box-shadow: 0 0 20px #ff0000;
+  pointer-events: none;
+  transform: rotate(var(--pop-angle, 0deg));
+  animation: superShake 0.08s infinite;
+}
+
+/* MURCIÉLAGOS */
+/* MURCIÉLAGOS OPTIMIZADOS CON GPU */
+.bat-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 300;
+  overflow: hidden;
+  contain: strict; /* Le dice al navegador que no re-calcule el resto del HTML */
+}
+
+.bat {
+  position: absolute;
+  bottom: -60px;
+  font-size: 2.2rem;
+  user-select: none;
+  filter: drop-shadow(0 0 8px rgba(255, 117, 24, 0.9));
+  animation: flyBatEpic linear forwards;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+.bat-wings {
+  display: inline-block;
+  animation: batFlap 0.12s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* TRAYECTORIA USANDO TRASLACIÓN 3D (Máxima fluidez) */
+@keyframes flyBatEpic {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.3) rotate(0deg);
+  }
+  15% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate3d(calc(var(--bat-x-end) * 0.5), -50vh, 0) scale(var(--bat-scale)) rotate(var(--bat-rot));
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--bat-x-end), -110vh, 0) scale(calc(var(--bat-scale) * 1.3)) rotate(calc(var(--bat-rot) * 2));
+  }
+}
+
+@keyframes batFlap {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+  100% {
+    transform: scale3d(0.65, 1.25, 1) rotate(-5deg);
+  }
+}
+
+/* ==========================================
+   INVITACIÓN PRINCIPAL
+   ========================================== */
+.main-content {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  position: relative;
+  z-index: 10;
+}
+
+.party-header {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.main-title {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(1.8rem, 5vw, 2.2rem);
+  color: #ff7518;
+  text-shadow: 3px 3px 0px #000, 0 0 15px rgba(255, 117, 24, 0.7);
+}
+
+.sub-name {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: clamp(2.3rem, 7vw, 3rem);
+  color: #fff;
+  text-shadow: 3px 3px 0px #7b2cbf, 0 0 25px rgba(168, 85, 247, 0.8);
+}
+
+.funny-phrase {
+  font-family: 'Pirata One', cursive;
+  font-size: 1.8rem;
+  color: #ffea00;
+  text-shadow: 2px 2px 0px #000, 0 0 10px rgba(255, 234, 0, 0.5);
+  margin-top: 5px;
+}
+
+.featured-image-container {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.card {
+  background: rgba(22, 11, 33, 0.9);
+  border: 1px solid #ff7518;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 25px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+}
+
+.section-title {
+  font-family: 'Cinzel Decorative', serif;
+  color: #a855f7;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+/* CALENDARIO GÓTICO */
+.gothic-calendar-card {
+  background: linear-gradient(180deg, #180926 0%, #0d0417 100%);
+  border: 2px solid #a855f7;
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.3), inset 0 0 15px rgba(0,0,0,0.8);
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  border-bottom: 1px solid rgba(168, 85, 247, 0.4);
+  padding-bottom: 12px;
+  margin-bottom: 18px;
+}
+
+.calendar-skull {
+  color: #ff7518;
+  font-size: 1.2rem;
+}
+
+.calendar-title {
+  font-family: 'Cinzel Decorative', serif;
+  color: #ff7518;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+}
+
+.gothic-details-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.gothic-item {
+  background: rgba(10, 3, 18, 0.7);
+  border-left: 3px solid #ff7518;
+  padding: 10px 14px;
+  border-radius: 0 8px 8px 0;
+}
+
+.gothic-label {
+  display: block;
+  font-size: 0.75rem;
+  color: #a855f7;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+}
+
+.gothic-value {
+  font-size: 1.05rem;
+  color: #f3e8ff;
+  font-weight: 600;
+}
+
+.highlight-text {
+  color: #00ff88 !important;
+  font-family: 'Pirata One', cursive;
+  font-size: 1.4rem !important;
+}
+
+.warning-text {
+  color: #ffea00 !important;
+}
+
+/* CONTADOR REGRESIVO */
+.countdown-3d {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.time-card {
+  background: linear-gradient(145deg, #1f112b, #0d0614);
+  border: 1px solid #ff7518;
+  border-radius: 10px;
+  padding: 10px 8px;
+  width: 22%;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.7);
+}
+
+.time-num {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #ff7518;
+  text-shadow: 0 0 10px #ff7518;
+}
+
+.time-label {
+  font-size: 0.7rem;
+  color: #aaa;
+}
+
+/* MAPA */
+.location-address {
+  margin-bottom: 12px;
+  font-size: 1rem;
+  color: #d1b3ff;
+}
+
+.map-3d-frame {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid #a855f7;
+  margin-bottom: 15px;
+}
+
+.btn-map {
+  display: block;
+  background-color: #a855f7;
+  color: white;
+  text-decoration: none;
+  text-align: center;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+/* WHATSAPP */
+.confirm-section {
+  text-align: center;
+  margin: 25px 0 40px 0;
+}
+
+.btn-confirm {
+  background-color: #25d366;
+  color: white;
+  border: none;
+  padding: 16px 25px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(37, 211, 102, 0.5);
+  width: 100%;
+}
+
+.strobe-bg {
+  animation: discoStrobeMulti 0.05s infinite !important;
+}
+
+@keyframes discoStrobeMulti {
+  0% { background-color: #000000; }
+  20% { background-color: #a855f7; }
+  40% { background-color: #00ff88; }
+  60% { background-color: #ff0000; }
+  80% { background-color: #ff7518; }
+  100% { background-color: #2e0854; }
+}
+
+/* BORDE Y SOMBRA ESTILO DISCOTECA PARA LA FOTO PRINCIPAL */
+.img-featured {
+  width: 100%;
+  max-height: 380px;
+  object-fit: cover;
+  border-radius: 15px;
+  border: 3px solid #ff7518;
+  box-shadow: 0 0 25px rgba(255, 117, 24, 0.8), 0 0 40px rgba(168, 85, 247, 0.6);
+}

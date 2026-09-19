@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mis 15 Años - Anghely</title>
+  
+  <!-- Fuentes de Google: Cinzel Decorative, Pirata One y Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Montserrat:wght@400;600;700&family=Pirata+One&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome e Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Audio de Fondo -->
+  <audio id="bg-music" src="mp3fondopaglina.mp3" loop></audio>
+
+  <!-- Contenedor para animación de murciélagos -->
+  <div id="bat-container" class="bat-container"></div>
+
+  <!-- FONDO ANIMADO DE TODA LA PÁGINA (LUNA, NUBES Y NIEBLA) -->
+  <div class="sky-bg"></div>
+  <div class="spooky-moon"></div>
+  
+  <div class="cloud-layer">
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+  </div>
+
+  <div class="fog-layer"></div>
+
+  <!-- PORTADA Y PANTALLA DE CARGA -->
+  <section id="screen-loading" class="screen flex-center">
+    <div class="loader-box">
+      <h1 class="welcome-title animate__animated animate__fadeInDown">¡BIENVENID@!</h1>
+      <p class="welcome-subtitle-highlight">¿Fuiste invitad@?</p>
+
+      <div class="avatar-wrapper">
+        <img src="imgPORTADA1.png" alt="Anghely" class="avatar-portada">
+      </div>
+
+      <div id="spinner" class="pumpkin-spinner">🎃</div>
+      <h2 id="loading-text" class="loading-text">Verificando invitación...</h2>
+
+      <button id="btn-go" class="btn-go animate__animated animate__pulse animate__infinite hidden">
+        ¡PRESIONAME!
+      </button>
+    </div>
+  </section>
+
+  <!-- SUSTO / HACKEO TEMPORAL -->
+  <section id="screen-jumpscare" class="screen flex-center hidden">
+    <div class="jumpscare-content">
+      <h1 class="hacked-text final-reveal-text">
+        ¡BIENVENIDA/O A MIS XV!
+      </h1>
+    </div>
+  </section>
+
+  <!-- INVITACIÓN PRINCIPAL -->
+  <main id="main-content" class="main-content hidden">
+    <div class="sky-bg"></div>
+    <div class="spooky-moon"></div>
+    <div class="clouds"></div>
+
+    <header class="party-header">
+      <h1 class="main-title animate__animated animate__fadeInDown">MIS XV AÑOS</h1>
+      <h2 class="sub-name">ANGHELY</h2>
+      <p class="funny-phrase">¡PROHIBIDO LLEVAR TAPER!</p>
+    </header>
+
+    <!-- Imagen Principal -->
+    <section class="featured-image-container">
+      <img src="imgfondoprincipal.png" alt="Persona Especial" class="img-featured">
+    </section>
+
+    <!-- Contador Regresivo 3D -->
+    <section class="card countdown-card">
+      <h2 class="section-title"><i class="fa-solid fa-hourglass-half"></i> FALTAN SOLO:</h2>
+      <div id="countdown" class="countdown-3d">
+        <div class="time-card"><span id="days" class="time-num">00</span><small class="time-label">DÍAS</small></div>
+        <div class="time-card"><span id="hours" class="time-num">00</span><small class="time-label">HORAS</small></div>
+        <div class="time-card"><span id="minutes" class="time-num">00</span><small class="time-label">MINUTOS</small></div>
+        <div class="time-card"><span id="seconds" class="time-num">00</span><small class="time-label">SEGUNDOS</small></div>
+      </div>
+    </section>
+
+    <!-- CALENDARIO GÓTICO / DETALLES DEL EVENTO -->
+    <section class="card gothic-calendar-card">
+      <div class="calendar-header">
+        <i class="fa-solid fa-skull-crossbones calendar-skull"></i>
+        <h2 class="calendar-title">FECHA Y DETALLES</h2>
+        <i class="fa-solid fa-skull-crossbones calendar-skull"></i>
+      </div>
+      
+      <div class="gothic-details-grid">
+        <div class="gothic-item">
+          <span class="gothic-label"><i class="fa-solid fa-crown"></i> CUMPLEAÑERA</span>
+          <span class="gothic-value highlight-text">Anghely</span>
+        </div>
+        <div class="gothic-item">
+          <span class="gothic-label"><i class="fa-solid fa-calendar-day"></i> FECHA</span>
+          <span class="gothic-value">Viernes, 30 de Octubre de 2026</span>
+        </div>
+        <div class="gothic-item">
+          <span class="gothic-label"><i class="fa-solid fa-clock"></i> HORA</span>
+          <span class="gothic-value">8:00 PM</span>
+        </div>
+        <div class="gothic-item">
+          <span class="gothic-label"><i class="fa-solid fa-map-pin"></i> LUGAR</span>
+          <span class="gothic-value">El Alamo 1038</span>
+        </div>
+        <div class="gothic-item full-width">
+          <span class="gothic-label"><i class="fa-solid fa-mask"></i> CÓDIGO DE VESTIMENTA</span>
+          <span class="gothic-value warning-text">Disfraz - Temática Halloween</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ubicación con Google Maps -->
+    <section class="card map-card">
+      <h2 class="section-title"><i class="fa-solid fa-map-location-dot"></i> UBICACIÓN</h2>
+      <p class="location-address">El Alamo 1038</p>
+
+      <div class="map-3d-frame">
+       <iframe 
+    src="https://maps.google.com/maps?q=El%20Alamo%201038,%20Comas,%20Lima&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+    width="100%" 
+    height="280" 
+    style="border:0;" 
+    allowfullscreen="" 
+    loading="lazy" 
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+      </div>
+
+      <a id="btn-map" href="https://maps.app.goo.gl/fhvVDTWfzNJL191BA" target="_blank" rel="noopener noreferrer" class="btn-map">
+        <i class="fa-solid fa-location-arrow"></i> ABRIR EN MAPAS
+      </a>
+    </section>
+
+    <!-- Confirmación WhatsApp -->
+    <section class="confirm-section">
+      <button id="btn-whatsapp" class="btn-confirm">
+        <i class="fa-brands fa-whatsapp"></i> CONFIRMAR ASISTENCIA
+      </button>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

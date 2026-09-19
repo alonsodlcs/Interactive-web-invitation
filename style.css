@@ -648,3 +648,43 @@ body {
   border: 3px solid #ff7518;
   box-shadow: 0 0 25px rgba(255, 117, 24, 0.8), 0 0 40px rgba(168, 85, 247, 0.6);
 }
+
+/* ==========================================
+   BOTÓN GOOGLE CALENDAR Y SCROLL REVEAL
+   ========================================== */
+.calendar-btn-wrapper {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.btn-calendar {
+  display: inline-block;
+  width: 100%;
+  background: linear-gradient(135deg, #2b1055, #7597de);
+  color: #ffffff;
+  text-decoration: none;
+  text-align: center;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: bold;
+  box-shadow: 0 4px 15px rgba(117, 151, 222, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-calendar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(117, 151, 222, 0.6);
+}
+
+/* Animación Scroll Reveal */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(35px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}

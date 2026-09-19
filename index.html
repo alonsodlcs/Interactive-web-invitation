@@ -64,7 +64,7 @@
     </div>
   </section>
 
-  <!-- INVITACIÓN PRINCIPAL -->
+<!-- INVITACIÓN PRINCIPAL -->
   <main id="main-content" class="main-content hidden">
     <div class="sky-bg"></div>
     <div class="spooky-moon"></div>
@@ -77,12 +77,12 @@
     </header>
 
     <!-- Imagen Principal -->
-    <section class="featured-image-container">
+    <section class="featured-image-container reveal-on-scroll">
       <img src="imgfondoprincipal.png" alt="Persona Especial" class="img-featured">
     </section>
 
     <!-- Contador Regresivo 3D -->
-    <section class="card countdown-card">
+    <section class="card countdown-card reveal-on-scroll">
       <h2 class="section-title"><i class="fa-solid fa-hourglass-half"></i> FALTAN SOLO:</h2>
       <div id="countdown" class="countdown-3d">
         <div class="time-card"><span id="days" class="time-num">00</span><small class="time-label">DÍAS</small></div>
@@ -93,7 +93,7 @@
     </section>
 
     <!-- CALENDARIO GÓTICO / DETALLES DEL EVENTO -->
-    <section class="card gothic-calendar-card">
+    <section class="card gothic-calendar-card reveal-on-scroll">
       <div class="calendar-header">
         <i class="fa-solid fa-skull-crossbones calendar-skull"></i>
         <h2 class="calendar-title">FECHA Y DETALLES</h2>
@@ -122,23 +122,30 @@
           <span class="gothic-value warning-text">Disfraz - Temática Halloween</span>
         </div>
       </div>
+
+      <!-- BOTÓN AGENDAR EN GOOGLE CALENDAR -->
+      <div class="calendar-btn-wrapper">
+        <a id="btn-calendar" href="#" target="_blank" rel="noopener noreferrer" class="btn-calendar">
+          <i class="fa-solid fa-calendar-plus"></i> AGENDAR EN GOOGLE CALENDAR
+        </a>
+      </div>
     </section>
 
     <!-- Ubicación con Google Maps -->
-    <section class="card map-card">
+    <section class="card map-card reveal-on-scroll">
       <h2 class="section-title"><i class="fa-solid fa-map-location-dot"></i> UBICACIÓN</h2>
-      <p class="location-address">El Alamo 1038</p>
+      <p class="location-address">"El Alamo 1038" / Referencia: Chifa "HAY SEN" </p>
 
       <div class="map-3d-frame">
-       <iframe 
-    src="https://maps.google.com/maps?q=El%20Alamo%201038,%20Comas,%20Lima&t=&z=16&ie=UTF8&iwloc=&output=embed" 
-    width="100%" 
-    height="280" 
-    style="border:0;" 
-    allowfullscreen="" 
-    loading="lazy" 
-    referrerpolicy="no-referrer-when-downgrade">
-  </iframe>
+        <iframe 
+          src="https://maps.google.com/maps?q=El%20Alamo%201038,%20Comas,%20Lima&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+          width="100%" 
+          height="280" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
       </div>
 
       <a id="btn-map" href="https://maps.app.goo.gl/fhvVDTWfzNJL191BA" target="_blank" rel="noopener noreferrer" class="btn-map">
@@ -147,7 +154,7 @@
     </section>
 
     <!-- Confirmación WhatsApp -->
-    <section class="confirm-section">
+    <section class="confirm-section reveal-on-scroll">
       <button id="btn-whatsapp" class="btn-confirm">
         <i class="fa-brands fa-whatsapp"></i> CONFIRMAR ASISTENCIA
       </button>

@@ -126,4 +126,35 @@ document.addEventListener("DOMContentLoaded", () => {
       window.open(whatsappUrl, "_blank");
     });
   }
-});
+
+  // AGENDAR EN GOOGLE CALENDAR
+  const btnCalendar = document.getElementById("btn-calendar");
+  if (btnCalendar) {
+    const eventDetails = {
+      title: "XV Años de Anghely 🎃👑",
+      details: "¡Fiesta de XV años con temática Halloween! Código de vestimenta: Disfraz.",
+      location: "El Alamo 1038, Comas, Lima",
+      startDate: "20261030T200000",
+      endDate: "20261031T030000"
+    };
+
+    const calendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventDetails.title)}&dates=${eventDetails.startDate}/${eventDetails.endDate}&details=${encodeURIComponent(eventDetails.details)}&location=${encodeURIComponent(eventDetails.location)}`;
+    
+    btnCalendar.href = calendarUrl;
+  }
+
+  // EFECTO SCROLL REVEAL (Aparición al deslizar)
+  const observerOptions = { threshold: 0.15 };
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll(".reveal-on-scroll").forEach(el => {
+    revealObserver.observe(el);
+  });
+}); // Cierre final de DOMContentLoaded

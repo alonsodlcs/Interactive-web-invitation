@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (btnCalendar) {
     const eventDetails = {
       title: "XV Años de Anghely 🎃👑",
-      details: "¡Fiesta de XV años con temática Halloween! Código de vestimenta: Disfraz.",
+      details: "¡Fiesta de XV años con temática Halloween! Código de vestimenta: Disfraz - OBLIGATORIO",
       location: "El Alamo 1038, Comas, Lima",
       startDate: "20261030T200000",
       endDate: "20261031T030000"
